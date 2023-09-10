@@ -3,6 +3,8 @@ import Link from "next/link";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faLanguage } from "@fortawesome/free-solid-svg-icons";
 export default function Home() {
   const [data, setData] = useState([]);
 
@@ -27,28 +29,53 @@ export default function Home() {
       name: "eino-it-www",
       description:
         "Website for my business. Made with ReactJS and CSS. Static website, no backend.",
-      url: "https://eino-it.fi",
       image: "/eino-it.png",
+      url: "https://eino-it.fi",
     },
     {
-      lang: ["ReactJS", "CSS"],
+      lang: ["ReactJS", "SCSS"],
       name: "eino-porfolio-react",
       description:
-        "My personal website. Made with ReactJS and SCSS. Static website, no backend.",
+        "My old personal website. Made with ReactJS and SCSS. Static website, no backend.",
       url: "https://eino-it.fi",
-      image: "/eino-portfolio.png",
+      image: "/eino-portfolio-react.png",
       archived: true,
     },
     {
-      lang: ["NextJS", "SCSS"],
+      lang: ["Next JS", "SCSS"],
+      name: "eino-porfolio-next",
+      description:
+        "My personal website. Made with ReactJS and SCSS. Static website, no backend.",
+      url: "https://eino.bio/",
+      image: "/eino-portfolio-next.png",
+    },
+    {
+      lang: ["NextJS", "SCSS", "WIP"],
       name: "lomakeitaat-www",
       description:
-        "Cottage rental website. Made with NextJS and SCSS. Linkage to Lomarengas' booking system.",
+        "Cottage rental website. Made with NextJS and SCSS. Linkage to Lomarengas' booking system. WIP",
       url: null,
-      image: "/wip.png",
-      private: true
+      private: true,
+    },
+    {
+      lang: ["Wordpress"],
+      name: "hanesbakery.fi",
+      description: "Website for a local bakery. Made with Wordpress.",
+      url: "https://hanesbakery.fi",
+      image: "/hanesbakery.jpg",
+      private: true,
     },
   ];
+  const Stars = ({ filled }: { filled: number }) => {
+    const maxStars = 5;
+    const filledStars = Math.min(filled, maxStars);
+
+    const filledStarElements = Array.from({ length: filledStars }, (_, i) => (
+      <FontAwesomeIcon key={i} icon={faStar} />
+    ));
+
+    return <>{filledStarElements}</>;
+  };
   return (
     <main className="bg-zinc-900 text-stone-300">
       <div className="min-h-screen px-4 flex flex-col pt-20 text-center content-center ">
@@ -74,20 +101,69 @@ export default function Home() {
           React and for my company&apos;s clients, I usually make websites with
           WordPress.
         </p>
-        <h2 className="text-3xl font-bold p-0 mt-20 ">Coding stats past month</h2>
+        <h2 className="text-3xl font-bold p-0 mt-20 ">
+          Coding stats past month
+        </h2>
         <div className="mt-[40px] px-4 sm:px-24 font-rubik flex justify-center gap-3 flex-wrap  text-left">
-        {Object.entries(data).map((item, index) => {
-          const minutes = item[1] / 60
-          return Math.ceil(item[1] / 60) === 0 ? null : 
-          item[1] > 300 ? (
-            <Card>
-               <h2 className="text-2xl font-bold gradient-text font-sans py-2">
-                {item[0]}
-              </h2>
-              <p>{(minutes / 60).toFixed(2)} hours</p>
-            </Card>
-          ) : null;
-        })}
+          {Object.entries(data).map((item, index) => {
+            const minutes = item[1] / 60;
+            return Math.ceil(item[1] / 60) === 0 ? null : item[1] > 300 ? (
+              <Card>
+                <h2 className="text-2xl font-bold gradient-text font-sans py-2">
+                  {item[0]}
+                </h2>
+                <p>{(minutes / 60).toFixed(2)} hours</p>
+              </Card>
+            ) : null;
+          })}
+        </div>
+        <h2 className="text-3xl font-bold p-0 mt-20">My skills</h2>
+        <div className="mt-[40px] px-4 sm:px-24 font-rubik flex justify-center gap-3 flex-wrap mb-[40px]">
+          <Card>
+            <i className="devicon-html5-plain colored text-4xl" />
+            <h2 className="text-2xl font-bold gradient-text font-sans py-2">
+              HTML5
+            </h2>
+            <p>
+              <Stars filled={5} />
+            </p>
+          </Card>
+          <Card>
+            <i className="devicon-css3-plain colored text-4xl" />
+            <h2 className="text-2xl font-bold gradient-text font-sans py-2">
+              CSS3
+            </h2>
+            <p>
+              <Stars filled={5} />
+            </p>
+          </Card>
+          <Card>
+            <i className="devicon-javascript-plain colored text-4xl" />
+            <h2 className="text-2xl font-bold gradient-text font-sans py-2">
+              Javascript
+            </h2>
+            <p>
+              <Stars filled={2} />
+            </p>
+          </Card>
+          <Card>
+            <i className="devicon-react-plain colored text-4xl" />
+            <h2 className="text-2xl font-bold gradient-text font-sans py-2">
+              React JS
+            </h2>
+            <p>
+              <Stars filled={2} />
+            </p>
+          </Card>
+          <Card>
+            <i className="devicon-nextjs-plain colored text-4xl" />
+            <h2 className="text-2xl font-bold gradient-text font-sans py-2">
+              Next JS
+            </h2>
+            <p>
+              <Stars filled={3} />
+            </p>
+          </Card>
         </div>
         <h2 className="text-3xl font-bold p-0 mt-20">My projects</h2>
         <div className="mt-[40px] px-4 sm:px-24 font-rubik flex justify-center gap-3 flex-wrap  text-left mb-[40px]">
@@ -100,11 +176,10 @@ export default function Home() {
                   </h5>
                 ) : null}
                 {project.private ? (
-                   <h5 className="text-red-500 font-bold opacity-80 bg-zinc-600 p-1 rounded-lg">
-                   Private
-                 </h5>
-                ) : null
-                }
+                  <h5 className="text-red-500 font-bold opacity-80 bg-zinc-600 p-1 rounded-lg">
+                    Private
+                  </h5>
+                ) : null}
                 {Array.isArray(project.lang)
                   ? project.lang.map((lang: string, index: number) => (
                       <h5
@@ -119,16 +194,20 @@ export default function Home() {
               <h2 className="text-2xl font-bold gradient-text font-sans py-2">
                 {project.name}
               </h2>
-              <p className="text-lg">{project.description}</p>
+              <p className="text-lg mb-4">{project.description}</p>
               <Image
                 src={project.image}
-                alt="Picture of the project."
+                className="mb-4 rounded-xl"
                 width={600}
-                height={100}
+                height={400}
+                alt="Image of the project."
               />
-              <Button href={project.url}>
-                {project.archived ? "View on GitHub" : "View project"}
-              </Button>
+              {project.url == null ? null : (
+                <Button
+                  href={project.url}
+                  text={project.archived ? "View on GitHub" : "View project"}
+                />
+              )}
             </Card>
           ))}
         </div>
