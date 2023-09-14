@@ -196,7 +196,7 @@ export default function Home() {
               </h2>
               <p className="text-lg mb-4">{project.description}</p>
               <Image
-                src={project.image}
+                src={project.image!}
                 className="mb-4 rounded-xl"
                 width={600}
                 height={400}
