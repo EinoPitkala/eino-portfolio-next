@@ -1,7 +1,7 @@
 import Card from "@/components/Card";
 import Button from "@/components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faLaptopCode, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 const Contacts = () => {
   return (
@@ -30,7 +30,7 @@ const Contacts = () => {
               <FontAwesomeIcon icon={faEnvelope} className=" text-3xl" />
               <h2 className="text-2xl font-bold font-sans py-2">eMail</h2>
               <p className="text-lg mb-4">eMail me</p>
-              <Button href="mailto:me@eino.bio">me@eino.bio</Button>
+              <Button href="mailto:eino@pitkala.net">eino@pitkala.net</Button>
             </Card>
             <Card>
               <FontAwesomeIcon icon={faLaptopCode} className=" text-3xl" />
@@ -39,6 +39,14 @@ const Contacts = () => {
                 My business. Running alone as an entrepreneur
               </p>
               <Button href="https://eino-it.fi">Website</Button>
+            </Card>
+            <Card>
+              <FontAwesomeIcon icon={faLinkedin} className=" text-3xl" />
+              <h2 className="text-2xl font-bold font-sans py-2">LinkedIn</h2>
+              <p className="text-lg mb-4">
+                My LinkedIn profile. Not that active there.
+              </p>
+              <Button href="https://www.linkedin.com/in/eino-pitkala/">LinkedIn</Button>
             </Card>
           </div>
         </div>

@@ -7,11 +7,11 @@ const Footer = () => {
       </h2>
       <p className="text-xl">
         <Link href={"mailto:me@eino.bio"} className="link">
-          me@eino.bio
+          eino@pitkala.net
         </Link>
       </p>
       <p>Made with Next.js, Typescript and Tailwind</p>
-      <p className="text-lg mb-4">© 2023 Eino Pitkälä</p>
+      <p className="text-lg mb-4">© 2025 Eino Pitkälä</p>
     </div>
   );
 };
